@@ -15,14 +15,16 @@ The application should meet the following criteria:
 ## CONSIDERATIONS
 
 This app has been built based heavily on the React / Redux examples.
+
 The dockerfile is about as simple as simple can be.
 
-This is not performant - it's the simplest React / Redux interaction using stores and subscriptions.
-This is not performant - it's serving from react-scripts, for production this would want to be built. 
+* This is not performant - it's the simplest React / Redux interaction using stores and subscriptions.
+* This is not performant - it's serving from react-scripts, for production this would want to be built. 
 
 ## INSTRUCTIONS
 
-A docker build against the Dockerfile in the root of the repository will create a container.
+A docker build against the Dockerfile in the root of the repository will create a container. You do not have to have performed an npm install - docker build should do that for you!
+
 Connecting to this container on the associated port with your web browser will serve the page.
 
-There is data persistence from the redis-storage 
+There is data persistence from the redis-storage library, but only to localStorage (if you refresh the page, your votes will persist)
