@@ -1,23 +1,44 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { createStore } from 'redux'
-import Counter from './components/Counter'
-import counter from './reducers'
+import * as storage from 'redux-storage'
+import createEngine from 'redux-storage-engine-localstorage'
+import { createStore, applyMiddleware, combineReducers } from 'redux'
+import DoubleCounter from './components/DoubleCounter'
+import Header from './components/Header'
+import * as reducers from './reducers'
 
-const storeSkiing = createStore(counter)
-const storeSnowboarding = createStore(counter)
+const reducer = storage.reducer(combineReducers(reducers))
+const engine = createEngine('my-save-key')
+const middleware = storage.createMiddleware(engine)
+const createStoreWithMiddleware = applyMiddleware(middleware)(createStore)
+
+const store = createStoreWithMiddleware(reducer)
+
+const load = storage.createLoader(engine)
+load(store)
+load(store)
+    .then((newState) => console.log('Loaded state:', newState))
+    .catch(() => console.log('Failed to load previous state'))
+
 const rootEl = document.getElementById('root')
 
+
 const render = () => ReactDOM.render(
-  <Counter
-    skiing={storeSkiing.getState()}
-    snowboarding={storeSnowboarding.getState()}
-    onIncrementSkiing={() => storeSkiing.dispatch({ type: 'INCREMENT' })}
-    onIncrementSnowboarding={() => storeSnowboarding.dispatch({ type: 'INCREMENT' })}
-  />,
+  <body>
+  <Header 
+    title="WHAT IS YOUR FAVOURITE SPORT?"
+  />
+  <DoubleCounter
+    valueA={store.getState().default.A}
+    valueB={store.getState().default.B}
+    titleA="SKIING"
+    titleB="SNOWBOARDING"
+    onIncrementA={() => store.dispatch({ type: 'INCREMENTA' })}
+    onIncrementB={() => store.dispatch({ type: 'INCREMENTB' })}
+  />
+  </body>,
   rootEl
 )
 
 render()
-storeSkiing.subscribe(render)
-storeSnowboarding.subscribe(render)
+store.subscribe(render)

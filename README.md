@@ -1,33 +1,28 @@
-# Redux Counter Example
+# WEB APP FOR SECOND INTERVIEW
 
-This project template was built with [Create React App](https://github.com/facebookincubator/create-react-app).
+Created by Matthew Brown 2016
 
-## Available Scripts
+## DEFINITION OF DONE
 
-In the project directory, you can run:
+The application should meet the following criteria:
 
-### `npm start`
+* Clicking on skiing or snowboarding increases the score for that choice
+* The UI of the app should be a stateless React component
+* State in the app should be handled by implementing a Flux architecture, using the Redux library
+* Source code should be provided as a Git repository, and include a Docker container which will allow me to spin up the application and access it in my browser
+* It doesn't need to persist any data, but if data persistence was included in the app that would get bonus points!
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## CONSIDERATIONS
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+This app has been built based heavily on the React / Redux examples.
+The dockerfile is about as simple as simple can be.
 
-### `npm run build`
+This is not performant - it's the simplest React / Redux interaction using stores and subscriptions.
+This is not performant - it's serving from react-scripts, for production this would want to be built. 
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## INSTRUCTIONS
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+A docker build against the Dockerfile in the root of the repository will create a container.
+Connecting to this container on the associated port with your web browser will serve the page.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+There is data persistence from the redis-storage 

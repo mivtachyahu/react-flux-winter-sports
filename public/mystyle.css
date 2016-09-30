@@ -1,0 +1,55 @@
+body {
+    color: black;
+    display: flex;
+    flex-flow: row wrap;
+    text-align: center;
+    background-color: white;
+    font-size: 20px;
+    font-family: arial;
+    font-weight: bold;
+}
+
+Button {
+    background-color: white;
+    border: 4px solid black;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+    font-size: inherit;
+    font-weight: 900;
+    width: 250px;
+}
+
+h2 {
+    text-align: center;
+    width: 100%;
+}
+
+p {
+    align: inherit;
+    margin-top: 32px;
+    width: 100%;
+}
+
+.lineBreak {
+    width:100%;
+}
+
+.rTable {
+    display: table;
+    margin: auto;
+    width: 60%; 
+} 
+
+.rTableRow {
+    display: table-row; 
+}
+
+.rTableCell {
+    display: table-cell;
+}
+
